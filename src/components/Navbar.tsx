@@ -1,28 +1,28 @@
 import { motion, useScroll, useTransform } from "motion/react";
 import { useState, useEffect } from "react";
 import { Package, Menu, X, MessageCircle } from "lucide-react";
+import { Link, useLocation } from "react-router-dom";
 
 const navLinks = [
-  { name: "Home", href: "#home" },
-  { name: "Products", href: "#products" },
-  { name: "About", href: "#about" },
-  { name: "Factory", href: "#factory" },
-  { name: "Industries", href: "#industries" },
-  { name: "Reviews", href: "#reviews" },
-  { name: "Contact", href: "#contact" },
+  { name: "Home", href: "/" },
+  { name: "Products", href: "/products" },
+  { name: "About", href: "/about" },
+  { name: "Industries", href: "/industries" },
+  { name: "Contact", href: "/contact" },
 ];
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { scrollY } = useScroll();
-  
+  const location = useLocation();
+
   const backgroundColor = useTransform(
     scrollY,
     [0, 100],
     ["rgba(16, 16, 16, 0)", "rgba(16, 16, 16, 0.98)"]
   );
-  
+
   const backdropBlur = useTransform(
     scrollY,
     [0, 100],
@@ -37,11 +37,15 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Update background for non-home pages to always be visible
+  const isHome = location.pathname === "/";
+  const navBackground = isHome ? backgroundColor : "rgba(16, 16, 16, 0.98)";
+
   return (
     <>
       <motion.nav
-        style={{ 
-          backgroundColor,
+        style={{
+          backgroundColor: navBackground,
           backdropFilter: backdropBlur,
           WebkitBackdropFilter: backdropBlur
         }}
@@ -53,7 +57,7 @@ export function Navbar() {
         {/* Elegant Top Border */}
         <motion.div
           initial={{ scaleX: 0 }}
-          animate={{ scaleX: isScrolled ? 1 : 0 }}
+          animate={{ scaleX: isScrolled || !isHome ? 1 : 0 }}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           className="h-px bg-gradient-to-r from-transparent via-[#A56F3D] to-transparent origin-center"
         />
@@ -61,14 +65,12 @@ export function Navbar() {
         <div className="max-w-[1600px] mx-auto px-8 lg:px-16">
           <div className="flex items-center justify-between h-24">
             {/* Logo */}
-            <motion.a
-              href="#home"
+            <Link
+              to="/"
               className="flex items-center gap-4 group relative"
-              whileHover={{ scale: 1.02 }}
-              transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
             >
               <div className="relative">
-                <motion.div 
+                <motion.div
                   className="w-12 h-12 bg-gradient-to-br from-[#A56F3D] to-[#8B5A2F] flex items-center justify-center"
                   whileHover={{ scale: 1.1, filter: "drop-shadow(0 0 10px rgba(165, 111, 61, 0.4))" }}
                   transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
@@ -83,31 +85,39 @@ export function Navbar() {
                   Premium Packaging
                 </div>
               </div>
-            </motion.a>
+            </Link>
 
             {/* Desktop Navigation */}
             <div className="hidden lg:flex items-center gap-2">
               {navLinks.map((link, index) => (
-                <motion.a
+                <Link
                   key={index}
-                  href={link.href}
+                  to={link.href}
                   className="relative text-[#D4D1CC] hover:text-white px-5 py-3 text-[13px] uppercase tracking-[0.15em] font-light group"
-                  initial={{ opacity: 0, y: -20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ 
-                    duration: 0.5, 
-                    delay: 0.1 + index * 0.05,
-                    ease: [0.22, 1, 0.36, 1]
-                  }}
                 >
-                  <span className="relative z-10">{link.name}</span>
-                  <motion.div
-                    className="absolute bottom-2 left-5 right-5 h-px bg-gradient-to-r from-transparent via-[#A56F3D] to-transparent"
-                    initial={{ scaleX: 0, opacity: 0 }}
-                    whileHover={{ scaleX: 1, opacity: 1 }}
-                    transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                  />
-                </motion.a>
+                  <motion.span
+                    className="relative z-10"
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{
+                      duration: 0.5,
+                      delay: 0.1 + index * 0.05,
+                      ease: [0.22, 1, 0.36, 1]
+                    }}
+                  >
+                    {link.name}
+                  </motion.span>
+                  {location.pathname === link.href && (
+                    <motion.div
+                      layoutId="activeNav"
+                      className="absolute bottom-2 left-5 right-5 h-px bg-[#A56F3D]"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ duration: 0.4 }}
+                    />
+                  )}
+                  <div className="absolute bottom-2 left-5 right-5 h-px bg-gradient-to-r from-transparent via-[#A56F3D] to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out origin-center" />
+                </Link>
               ))}
             </div>
 
@@ -164,24 +174,27 @@ export function Navbar() {
       >
         <div className="px-8 py-8 space-y-2">
           {navLinks.map((link, index) => (
-            <motion.a
+            <Link
               key={index}
-              href={link.href}
+              to={link.href}
               onClick={() => setIsMobileMenuOpen(false)}
-              className="block text-[#D4D1CC] hover:text-white py-4 px-6 uppercase text-sm tracking-[0.15em] font-light border-l-2 border-transparent hover:border-[#A56F3D] hover:bg-[#A56F3D]/10 transition-all duration-300"
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ 
-                opacity: isMobileMenuOpen ? 1 : 0, 
-                x: isMobileMenuOpen ? 0 : -20 
-              }}
-              transition={{ 
-                delay: index * 0.05,
-                duration: 0.4,
-                ease: [0.22, 1, 0.36, 1]
-              }}
+              className={`block text-[#D4D1CC] hover:text-white py-4 px-6 uppercase text-sm tracking-[0.15em] font-light border-l-2 transition-all duration-300 ${location.pathname === link.href ? 'border-[#A56F3D] bg-[#A56F3D]/10 text-white' : 'border-transparent hover:border-[#A56F3D] hover:bg-[#A56F3D]/10'}`}
             >
-              {link.name}
-            </motion.a>
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                animate={{
+                  opacity: isMobileMenuOpen ? 1 : 0,
+                  x: isMobileMenuOpen ? 0 : -20
+                }}
+                transition={{
+                  delay: index * 0.05,
+                  duration: 0.4,
+                  ease: [0.22, 1, 0.36, 1]
+                }}
+              >
+                {link.name}
+              </motion.div>
+            </Link>
           ))}
           <motion.a
             href="https://wa.me/916282370094"
@@ -189,9 +202,9 @@ export function Navbar() {
             rel="noopener noreferrer"
             className="flex items-center justify-center gap-3 bg-gradient-to-r from-[#25D366] to-[#1fb855] text-white px-6 py-4 mt-4"
             initial={{ opacity: 0, y: 20 }}
-            animate={{ 
-              opacity: isMobileMenuOpen ? 1 : 0, 
-              y: isMobileMenuOpen ? 0 : 20 
+            animate={{
+              opacity: isMobileMenuOpen ? 1 : 0,
+              y: isMobileMenuOpen ? 0 : 20
             }}
             transition={{ delay: navLinks.length * 0.05 }}
           >
