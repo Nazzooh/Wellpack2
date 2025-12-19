@@ -1,15 +1,16 @@
 import { motion } from "motion/react";
-import { 
-  ShoppingBag, 
-  Utensils, 
-  Zap, 
-  Shirt, 
+import {
+  ShoppingBag,
+  Utensils,
+  Zap,
+  Shirt,
   Home,
   Cpu
 } from "lucide-react";
 import { ScrollReveal } from "./ScrollReveal";
+import { Link } from "react-router-dom";
 
-const easing = [0.22, 1, 0.36, 1];
+const easing: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
 const industries = [
   { icon: Utensils, name: "Food & FMCG", description: "FDA-approved solutions" },
@@ -25,8 +26,8 @@ export function IndustriesServed() {
     <section id="industries" className="py-40 bg-white relative overflow-hidden">
       {/* Subtle Gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#F8F9FA]/30 to-transparent" />
-      
-      <div className="max-w-[1600px] mx-auto px-8 lg:px-16 relative z-10">
+
+      <div className="max-w-[1920px] mx-auto px-8 lg:px-20 relative z-10">
         {/* Section Header */}
         <ScrollReveal className="text-center mb-24">
           <div className="flex items-center justify-center gap-4 mb-8">
@@ -40,7 +41,7 @@ export function IndustriesServed() {
             Trusted Across<br />Diverse Industries
           </h2>
           <p className="text-[#5A5A5A] text-xl leading-[1.8] font-light max-w-2xl mx-auto">
-            Specialized packaging solutions crafted for unique industry 
+            Specialized packaging solutions crafted for unique industry
             requirements and exacting standards.
           </p>
         </ScrollReveal>
@@ -58,7 +59,7 @@ export function IndustriesServed() {
                   {/* Icon Container */}
                   <motion.div
                     className="w-24 h-24 mx-auto mb-8 border border-[#A56F3D]/20 flex items-center justify-center relative bg-gradient-to-br from-white to-[#F8F9FA]"
-                    whileHover={{ 
+                    whileHover={{
                       scale: 1.1,
                       backgroundColor: "#A56F3D",
                       borderColor: "#A56F3D",
@@ -67,7 +68,7 @@ export function IndustriesServed() {
                     transition={{ duration: 0.6, ease: easing }}
                   >
                     <industry.icon className="w-12 h-12 text-[#A56F3D] group-hover:text-[#101010] transition-colors duration-600" />
-                    
+
                     {/* Corner Accent */}
                     <div className="absolute -bottom-2 -right-2 w-4 h-4 bg-[#A56F3D] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                   </motion.div>
@@ -106,7 +107,7 @@ export function IndustriesServed() {
             </div>
 
             <div className="relative z-10 text-center max-w-3xl mx-auto">
-              <motion.h3 
+              <motion.h3
                 className="text-white text-4xl lg:text-5xl mb-8 font-light tracking-tight"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -115,23 +116,29 @@ export function IndustriesServed() {
               >
                 Don't See Your Industry?
               </motion.h3>
-              <motion.p 
+              <motion.p
                 className="text-[#D4D1CC] text-lg mb-12 leading-[1.8] font-light"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.1, ease: easing }}
               >
-                We specialize in creating bespoke packaging solutions for businesses 
+                We specialize in creating bespoke packaging solutions for businesses
                 across all sectors. Contact us to discuss your unique requirements.
               </motion.p>
-              <motion.div 
+              <motion.div
                 className="flex flex-wrap justify-center gap-6"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.2, ease: easing }}
               >
+                <Link
+                  to="/industries"
+                  className="border border-white/20 text-white px-12 py-6 hover:bg-white hover:text-[#101010] transition-all duration-500"
+                >
+                  <span className="uppercase tracking-[0.25em] text-sm font-light">View All Sectors</span>
+                </Link>
                 <motion.a
                   href="#contact"
                   className="bg-gradient-to-r from-[#A56F3D] to-[#8B5A2F] hover:from-[#B87333] hover:to-[#A56F3D] text-white px-12 py-6 transition-all duration-500"

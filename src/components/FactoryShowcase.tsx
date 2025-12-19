@@ -3,8 +3,9 @@ import { useRef, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { ScrollReveal } from "./ScrollReveal";
+import { Link } from "react-router-dom";
 
-const easing = [0.22, 1, 0.36, 1];
+const easing: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
 const factoryStages = [
   {
@@ -43,12 +44,12 @@ export function FactoryShowcase() {
   const ref = useRef(null);
   const scrollRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
-  
+
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start end", "end start"],
   });
-  
+
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "10%"]);
 
   const scroll = (direction: "left" | "right") => {
@@ -64,7 +65,7 @@ export function FactoryShowcase() {
   return (
     <section id="factory" ref={ref} className="py-40 bg-gradient-to-b from-[#0A0A0A] via-[#101010] to-[#0A0A0A] relative overflow-hidden">
       {/* Elegant Grid with Parallax */}
-      <motion.div 
+      <motion.div
         className="absolute inset-0 opacity-[0.01]"
         style={{ y }}
       >
@@ -77,7 +78,7 @@ export function FactoryShowcase() {
       {/* Radial Gradient */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(165,111,61,0.05),transparent_70%)]" />
 
-      <div className="max-w-[1800px] mx-auto px-8 lg:px-16 relative z-10">
+      <div className="max-w-[1920px] mx-auto px-8 lg:px-20 relative z-10">
         {/* Section Header */}
         <ScrollReveal className="max-w-5xl mx-auto text-center mb-24">
           <div className="flex items-center justify-center gap-4 mb-8">
@@ -91,7 +92,7 @@ export function FactoryShowcase() {
             Precision at<br />Every Stage
           </h2>
           <p className="text-[#D4D1CC] text-xl leading-[1.8] font-light max-w-2xl mx-auto">
-            End-to-end production capabilities with state-of-the-art technology 
+            End-to-end production capabilities with state-of-the-art technology
             ensuring excellence throughout the manufacturing journey.
           </p>
         </ScrollReveal>
@@ -149,10 +150,10 @@ export function FactoryShowcase() {
                       className="w-full h-full object-cover"
                     />
                   </motion.div>
-                  
+
                   {/* Elegant Gradient */}
                   <div className="absolute inset-0 bg-gradient-to-t from-[#101010] via-[#101010]/60 to-transparent" />
-                  
+
                   {/* Stage Number */}
                   <motion.div
                     className="absolute top-10 left-10"
@@ -186,7 +187,7 @@ export function FactoryShowcase() {
                   <p className="text-[#D4D1CC] leading-[1.8] font-light">
                     {stage.description}
                   </p>
-                  
+
                   {/* Progress Line */}
                   <div className="pt-6">
                     <div className="h-px bg-white/10 overflow-hidden">
@@ -237,10 +238,16 @@ export function FactoryShowcase() {
               Experience Manufacturing Excellence
             </h3>
             <p className="text-[#D4D1CC] text-lg mb-10 font-light max-w-2xl mx-auto leading-[1.8]">
-              Visit our state-of-the-art facility in Feroke, Kerala. 
+              Visit our state-of-the-art facility in Feroke, Kerala.
               Witness the precision and quality that goes into every box we manufacture.
             </p>
             <div className="flex flex-wrap justify-center gap-6">
+              <Link
+                to="/about"
+                className="border border-white/20 text-white px-12 py-6 hover:bg-white hover:text-[#101010] transition-all duration-500"
+              >
+                <span className="uppercase tracking-[0.25em] text-sm font-light">About Us</span>
+              </Link>
               <motion.a
                 href="#contact"
                 className="bg-gradient-to-r from-[#A56F3D] to-[#8B5A2F] hover:from-[#B87333] hover:to-[#A56F3D] text-white px-12 py-6 transition-all duration-500"

@@ -3,7 +3,7 @@ import { ArrowRight, FileText, Star, Shield, Truck } from "lucide-react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { useRef } from "react";
 
-const easing = [0.22, 1, 0.36, 1];
+const easing: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
 export function HeroNew() {
   const ref = useRef(null);
@@ -23,18 +23,18 @@ export function HeroNew() {
       className="relative min-h-screen flex items-center pt-24 overflow-hidden bg-gradient-to-br from-[#0A0A0A] via-[#101010] to-[#1A1A1A]"
     >
       {/* Elegant Grid Pattern with Parallax */}
-      <motion.div 
+      <motion.div
         className="absolute inset-0 opacity-[0.015]"
         style={{ y: useTransform(scrollYProgress, [0, 1], ["0%", "20%"]) }}
       >
         <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <pattern id="elegant-grid" width="80" height="80" patternUnits="userSpaceOnUse">
-              <circle cx="40" cy="40" r="1" fill="#A56F3D" opacity="0.4"/>
-              <circle cx="0" cy="0" r="0.5" fill="#A56F3D" opacity="0.3"/>
-              <circle cx="80" cy="0" r="0.5" fill="#A56F3D" opacity="0.3"/>
-              <circle cx="0" cy="80" r="0.5" fill="#A56F3D" opacity="0.3"/>
-              <circle cx="80" cy="80" r="0.5" fill="#A56F3D" opacity="0.3"/>
+              <circle cx="40" cy="40" r="1" fill="#A56F3D" opacity="0.4" />
+              <circle cx="0" cy="0" r="0.5" fill="#A56F3D" opacity="0.3" />
+              <circle cx="80" cy="0" r="0.5" fill="#A56F3D" opacity="0.3" />
+              <circle cx="0" cy="80" r="0.5" fill="#A56F3D" opacity="0.3" />
+              <circle cx="80" cy="80" r="0.5" fill="#A56F3D" opacity="0.3" />
             </pattern>
           </defs>
           <rect width="100%" height="100%" fill="url(#elegant-grid)" />
@@ -45,10 +45,10 @@ export function HeroNew() {
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(165,111,61,0.1),transparent_50%)]" />
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#F8F9FA]" />
 
-      <div className="max-w-[1600px] mx-auto px-8 lg:px-16 relative z-10 w-full py-20">
+      <div className="max-w-[1920px] mx-auto px-8 lg:px-20 relative z-10 w-full py-20">
         <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
           {/* Left Side - Content */}
-          <motion.div 
+          <motion.div
             className="space-y-12"
             style={{ opacity }}
           >
@@ -59,7 +59,7 @@ export function HeroNew() {
               transition={{ duration: 0.8, delay: 0.2, ease: easing }}
               className="inline-flex items-center gap-3 px-6 py-3 border border-[#A56F3D]/20 bg-[#A56F3D]/5 backdrop-blur-sm"
             >
-              <motion.div 
+              <motion.div
                 className="w-1.5 h-1.5 bg-[#A56F3D]"
                 animate={{ scale: [1, 1.2, 1], opacity: [1, 0.6, 1] }}
                 transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
@@ -98,7 +98,7 @@ export function HeroNew() {
               transition={{ duration: 0.8, delay: 0.5, ease: easing }}
               className="text-[#D4D1CC] text-xl lg:text-2xl max-w-xl leading-[1.8] font-light"
             >
-              Engineered packaging solutions combining protection, 
+              Engineered packaging solutions combining protection,
               aesthetics, and sustainability for discerning businesses.
             </motion.p>
 
@@ -169,8 +169,8 @@ export function HeroNew() {
                   key={index}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ 
-                    duration: 0.6, 
+                  transition={{
+                    duration: 0.6,
                     delay: 0.8 + index * 0.1,
                     ease: easing
                   }}
@@ -179,7 +179,7 @@ export function HeroNew() {
                 >
                   <motion.div
                     className="w-12 h-12 border border-white/10 flex items-center justify-center"
-                    whileHover={{ 
+                    whileHover={{
                       borderColor: item.color,
                       backgroundColor: `${item.color}10`
                     }}
@@ -207,18 +207,18 @@ export function HeroNew() {
           >
             <div className="relative">
               {/* Main Image Container with Parallax */}
-              <motion.div 
+              <motion.div
                 className="relative overflow-hidden shadow-2xl"
                 style={{ y, scale }}
               >
                 <div className="absolute inset-0 border border-[#A56F3D]/20" />
                 <ImageWithFallback
-                  src="https://images.unsplash.com/photo-1762381294795-8fa0e7f3e90c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzdGFja2VkJTIwY2FyZGJvYXJkJTIwYm94ZXN8ZW58MXx8fHwxNzY0MTM2OTY2fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+                  src="/images/hero-main.png"
                   alt="Premium corrugated boxes"
                   className="w-full h-[650px] object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#101010]/60 via-transparent to-transparent" />
-                
+
                 {/* Corner Accent */}
                 <div className="absolute top-0 right-0 w-16 h-16 border-t border-r border-[#A56F3D]/30" />
                 <div className="absolute bottom-0 left-0 w-16 h-16 border-b border-l border-[#A56F3D]/30" />
@@ -234,7 +234,7 @@ export function HeroNew() {
               >
                 <div className="flex items-center gap-8">
                   <div className="text-center">
-                    <motion.div 
+                    <motion.div
                       className="text-5xl text-[#A56F3D] font-light tracking-tighter"
                       initial={{ opacity: 0, scale: 0 }}
                       animate={{ opacity: 1, scale: 1 }}
@@ -248,7 +248,7 @@ export function HeroNew() {
                   </div>
                   <div className="w-px h-16 bg-gradient-to-b from-transparent via-[#D4D1CC] to-transparent" />
                   <div className="text-center">
-                    <motion.div 
+                    <motion.div
                       className="text-5xl text-[#4A5D3E] font-light tracking-tighter"
                       initial={{ opacity: 0, scale: 0 }}
                       animate={{ opacity: 1, scale: 1 }}

@@ -1,5 +1,6 @@
 import { ProductCategories } from "../components/ProductCategories";
 import { ScrollReveal } from "../components/ScrollReveal";
+import { Link } from "react-router-dom";
 
 export function ProductsPage() {
     return (
@@ -20,9 +21,9 @@ export function ProductsPage() {
                 <div className="max-w-[1600px] mx-auto px-8 lg:px-16 text-center">
                     <h2 className="text-3xl text-[#101010] mb-6 font-light">Need a Custom Size?</h2>
                     <p className="text-[#5A5A5A] mb-8 font-light">We specialize in bespoke manufacturing for any specification.</p>
-                    <a href="/contact" className="inline-block bg-[#101010] text-white px-8 py-3 uppercase text-sm tracking-widest hover:bg-[#A56F3D] transition-colors duration-300">
+                    <Link to="/contact" className="inline-block bg-[#101010] text-white px-8 py-3 uppercase text-sm tracking-widest hover:bg-[#A56F3D] transition-colors duration-300">
                         Request Custom Quote
-                    </a>
+                    </Link>
                 </div>
             </section>
         </div>

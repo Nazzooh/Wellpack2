@@ -1,15 +1,15 @@
 import { motion } from "motion/react";
-import { 
-  Package, 
-  Clock, 
-  Palette, 
-  Shield, 
-  TrendingUp, 
-  DollarSign 
+import {
+  Package,
+  Clock,
+  Palette,
+  Shield,
+  TrendingUp,
+  DollarSign
 } from "lucide-react";
 import { ScrollReveal } from "./ScrollReveal";
 
-const easing = [0.22, 1, 0.36, 1];
+const easing: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
 const features = [
   {
@@ -61,8 +61,8 @@ export function WhyChoose() {
     <section id="about" className="py-40 bg-gradient-to-b from-[#F8F9FA] to-white relative overflow-hidden">
       {/* Elegant Background Accent */}
       <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-[#E8DDD0]/20 to-transparent" />
-      
-      <div className="max-w-[1600px] mx-auto px-8 lg:px-16 relative z-10">
+
+      <div className="max-w-[1920px] mx-auto px-8 lg:px-20 relative z-10">
         {/* Section Header */}
         <ScrollReveal className="max-w-4xl mb-24">
           <div className="flex items-center gap-4 mb-8">
@@ -75,7 +75,7 @@ export function WhyChoose() {
             Excellence<br />Through Details
           </h2>
           <p className="text-[#5A5A5A] text-xl leading-[1.8] font-light max-w-2xl">
-            Direct manufacturer advantages harmonized with professional service 
+            Direct manufacturer advantages harmonized with professional service
             and unwavering quality standards.
           </p>
         </ScrollReveal>
@@ -92,9 +92,9 @@ export function WhyChoose() {
                 <div className="bg-white p-12 h-full border-l-2 border-transparent hover:border-[#A56F3D] transition-all duration-700 hover:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.08)]">
                   {/* Icon & Metric */}
                   <div className="flex items-start justify-between mb-10">
-                    <motion.div 
+                    <motion.div
                       className="w-16 h-16 bg-gradient-to-br from-[#A56F3D]/5 to-transparent border border-[#A56F3D]/20 flex items-center justify-center"
-                      whileHover={{ 
+                      whileHover={{
                         backgroundColor: "#A56F3D",
                         borderColor: "#A56F3D",
                         scale: 1.1,
@@ -104,9 +104,9 @@ export function WhyChoose() {
                     >
                       <feature.icon className="w-8 h-8 text-[#A56F3D] group-hover:text-[#101010] transition-colors duration-500" />
                     </motion.div>
-                    
+
                     <div className="text-right">
-                      <motion.div 
+                      <motion.div
                         className="text-4xl text-[#A56F3D] font-light tracking-tighter"
                         initial={{ opacity: 0, scale: 0.8 }}
                         whileInView={{ opacity: 1, scale: 1 }}
@@ -161,7 +161,7 @@ export function WhyChoose() {
                 whileHover={{ y: -5 }}
                 className="bg-white p-12 text-center group cursor-pointer"
               >
-                <motion.div 
+                <motion.div
                   className="text-6xl text-[#A56F3D] mb-3 font-light tracking-tighter"
                   initial={{ opacity: 0, scale: 0.5 }}
                   whileInView={{ opacity: 1, scale: 1 }}
@@ -185,7 +185,7 @@ export function WhyChoose() {
               Ready to elevate your packaging?
             </h3>
             <p className="text-[#5A5A5A] text-lg mb-10 font-light max-w-2xl mx-auto leading-[1.8]">
-              Partner with Kerala's leading corrugated box manufacturer. 
+              Partner with Kerala's leading corrugated box manufacturer.
               Get your custom quote today and experience the Well Pack difference.
             </p>
             <div className="flex flex-wrap justify-center gap-6">

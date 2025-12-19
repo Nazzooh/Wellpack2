@@ -1,6 +1,62 @@
 import { ContactForm } from "../components/ContactForm";
 import { ScrollReveal } from "../components/ScrollReveal";
 import { Mail, Phone, MapPin } from "lucide-react";
+import { useState, useEffect } from "react";
+
+function ContactDetails() {
+    const [email, setEmail] = useState("Loading...");
+    const [phone, setPhone] = useState("Loading...");
+
+    useEffect(() => {
+        // Basic obfuscation by constructing strings at runtime
+        const eUser = "sales";
+        const eDomain = "wellpack.com";
+        const pCountry = "+91";
+        const pNum = "62823 70094";
+
+        setEmail(`${eUser}@${eDomain}`);
+        setPhone(`${pCountry} ${pNum}`);
+    }, []);
+
+    const items = [
+        {
+            icon: Phone,
+            title: "Call Us",
+            content: phone,
+            href: phone !== "Loading..." ? `tel:${phone.replace(/\s/g, '')}` : "#"
+        },
+        {
+            icon: Mail,
+            title: "Email Us",
+            content: email,
+            href: email !== "Loading..." ? `mailto:${email}` : "#"
+        },
+        {
+            icon: MapPin,
+            title: "Visit Us",
+            content: "Kerala, India",
+            href: "#"
+        }
+    ];
+
+    return (
+        <>
+            {items.map((item, i) => (
+                <ScrollReveal key={i} delay={i * 0.1}>
+                    <div className="bg-white p-8 border-l-2 border-[#A56F3D] hover:shadow-lg transition-shadow duration-300">
+                        <item.icon className="w-8 h-8 text-[#A56F3D] mb-4" />
+                        <h3 className="text-xl text-[#101010] mb-2 font-light">{item.title}</h3>
+                        {item.href === "#" ? (
+                            <p className="text-[#5A5A5A]">{item.content}</p>
+                        ) : (
+                            <a href={item.href} className="text-[#5A5A5A] hover:text-[#A56F3D] transition-colors">{item.content}</a>
+                        )}
+                    </div>
+                </ScrollReveal>
+            ))}
+        </>
+    );
+}
 
 export function ContactPage() {
     return (
@@ -16,23 +72,7 @@ export function ContactPage() {
                 </ScrollReveal>
 
                 <div className="grid md:grid-cols-3 gap-8 mb-20">
-                    {[
-                        { icon: Phone, title: "Call Us", content: "+91 62823 70094", href: "tel:+916282370094" },
-                        { icon: Mail, title: "Email Us", content: "sales@wellpack.com", href: "mailto:sales@wellpack.com" },
-                        { icon: MapPin, title: "Visit Us", content: "Kerala, India", href: "#" }
-                    ].map((item, i) => (
-                        <ScrollReveal key={i} delay={i * 0.1}>
-                            <div className="bg-white p-8 border-l-2 border-[#A56F3D] hover:shadow-lg transition-shadow duration-300">
-                                <item.icon className="w-8 h-8 text-[#A56F3D] mb-4" />
-                                <h3 className="text-xl text-[#101010] mb-2 font-light">{item.title}</h3>
-                                {item.href === "#" ? (
-                                    <p className="text-[#5A5A5A]">{item.content}</p>
-                                ) : (
-                                    <a href={item.href} className="text-[#5A5A5A] hover:text-[#A56F3D] transition-colors">{item.content}</a>
-                                )}
-                            </div>
-                        </ScrollReveal>
-                    ))}
+                    <ContactDetails />
                 </div>
             </div>
 
