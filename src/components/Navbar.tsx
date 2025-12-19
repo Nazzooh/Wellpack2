@@ -2,6 +2,7 @@ import { motion, useScroll, useTransform } from "motion/react";
 import { useState, useEffect } from "react";
 import { Package, Menu, X, MessageCircle } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
+import { cn } from "@/lib/utils";
 
 const navLinks = [
   { name: "Home", href: "/" },
@@ -94,6 +95,7 @@ export function Navbar() {
                   key={index}
                   to={link.href}
                   className="relative text-[#D4D1CC] hover:text-white px-5 py-3 text-[13px] uppercase tracking-[0.15em] font-light group"
+                  aria-current={location.pathname === link.href ? "page" : undefined}
                 >
                   <motion.span
                     className="relative z-10"
@@ -173,29 +175,38 @@ export function Navbar() {
         className="lg:hidden overflow-hidden fixed top-24 left-0 right-0 bg-[#101010]/98 backdrop-blur-xl z-40"
       >
         <div className="px-8 py-8 space-y-2">
-          {navLinks.map((link, index) => (
-            <Link
-              key={index}
-              to={link.href}
-              onClick={() => setIsMobileMenuOpen(false)}
-              className={`block text-[#D4D1CC] hover:text-white py-4 px-6 uppercase text-sm tracking-[0.15em] font-light border-l-2 transition-all duration-300 ${location.pathname === link.href ? 'border-[#A56F3D] bg-[#A56F3D]/10 text-white' : 'border-transparent hover:border-[#A56F3D] hover:bg-[#A56F3D]/10'}`}
-            >
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                animate={{
-                  opacity: isMobileMenuOpen ? 1 : 0,
-                  x: isMobileMenuOpen ? 0 : -20
-                }}
-                transition={{
-                  delay: index * 0.05,
-                  duration: 0.4,
-                  ease: [0.22, 1, 0.36, 1]
-                }}
+          {navLinks.map((link, index) => {
+            const isActive = location.pathname === link.href;
+            return (
+              <Link
+                key={index}
+                to={link.href}
+                onClick={() => setIsMobileMenuOpen(false)}
+                aria-current={isActive ? "page" : undefined}
+                className={cn(
+                  "block text-[#D4D1CC] hover:text-white py-4 px-6 uppercase text-sm tracking-[0.15em] font-light border-l-2 transition-all duration-300",
+                  isActive
+                    ? "border-[#A56F3D] bg-[#A56F3D]/10 text-white"
+                    : "border-transparent hover:border-[#A56F3D] hover:bg-[#A56F3D]/10"
+                )}
               >
-                {link.name}
-              </motion.div>
-            </Link>
-          ))}
+                <motion.div
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{
+                    opacity: isMobileMenuOpen ? 1 : 0,
+                    x: isMobileMenuOpen ? 0 : -20
+                  }}
+                  transition={{
+                    delay: index * 0.05,
+                    duration: 0.4,
+                    ease: [0.22, 1, 0.36, 1]
+                  }}
+                >
+                  {link.name}
+                </motion.div>
+              </Link>
+            );
+          })}
           <motion.a
             href="https://wa.me/916282370094"
             target="_blank"
