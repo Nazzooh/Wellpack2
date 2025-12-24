@@ -146,7 +146,7 @@ export function FactoryShowcase() {
                   >
                     <ImageWithFallback
                       src={stage.image}
-                      alt={stage.label}
+                      alt={`${stage.label} Stage - WellPack Manufacturing Excellence`}
                       className="w-full h-full object-cover"
                     />
                   </motion.div>

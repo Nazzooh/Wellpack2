@@ -2,6 +2,7 @@ import { ContactForm } from "../components/ContactForm";
 import { ScrollReveal } from "../components/ScrollReveal";
 import { Mail, Phone, MapPin } from "lucide-react";
 import { useState, useEffect } from "react";
+import { SEO } from "../components/SEO";
 
 function ContactDetails() {
     const [email, setEmail] = useState("Loading...");
@@ -61,6 +62,10 @@ function ContactDetails() {
 export function ContactPage() {
     return (
         <div className="pt-24 min-h-screen bg-[#F8F9FA]">
+            <SEO
+                title="Contact WellPack | Request a Packaging Quote"
+                description="Get in touch with WellPack for custom corrugated box manufacturing, factory visits, or project inquiries in Kerala, India."
+            />
             <div className="max-w-[1600px] mx-auto px-8 lg:px-16 py-16">
                 <ScrollReveal>
                     <h1 className="text-[#101010] text-5xl lg:text-6xl font-light mb-6">

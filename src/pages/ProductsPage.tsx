@@ -1,10 +1,15 @@
 import { ProductCategories } from "../components/ProductCategories";
 import { ScrollReveal } from "../components/ScrollReveal";
 import { Link } from "react-router-dom";
+import { SEO } from "../components/SEO";
 
 export function ProductsPage() {
     return (
         <div className="pt-24 min-h-screen bg-[#F8F9FA]">
+            <SEO
+                title="Industrial Corrugated Boxes & Packaging Solutions"
+                description="Explore our range of high-quality corrugated boxes, protective packaging, and custom shipping solutions designed for global industries."
+            />
             <div className="max-w-[1600px] mx-auto px-8 lg:px-16 py-16">
                 <ScrollReveal>
                     <h1 className="text-[#101010] text-5xl lg:text-6xl font-light mb-6">

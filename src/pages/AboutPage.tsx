@@ -1,10 +1,14 @@
 import { FactoryShowcase } from "../components/FactoryShowcase";
-import { motion } from "motion/react";
 import { ScrollReveal } from "../components/ScrollReveal";
+import { SEO } from "../components/SEO";
 
 export function AboutPage() {
     return (
         <div className="pt-24 min-h-screen bg-[#F8F9FA]">
+            <SEO
+                title="About WellPack | 15 Years of Packaging Excellence"
+                description="Learn about WellPack, Kerala's premier corrugated box manufacturer. 15 years of experience in high-quality, professional packaging solutions."
+            />
             <div className="max-w-[1600px] mx-auto px-8 lg:px-16 py-16">
                 <ScrollReveal>
                     <h1 className="text-[#101010] text-5xl lg:text-6xl font-light mb-8">

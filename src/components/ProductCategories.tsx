@@ -82,7 +82,7 @@ export function ProductCategories() {
                     >
                       <ImageWithFallback
                         src={product.image}
-                        alt={product.name}
+                        alt={`${product.name} - Premium Corrugated Packaging`}
                         className="w-full h-full object-cover"
                       />
                     </motion.div>
